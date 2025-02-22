@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { SearchIcon, Disc3Icon } from 'lucide-react';
 
 interface InputFormProps {
   onGlintFound: (glint: Glint) => void;
@@ -15,12 +16,15 @@ interface InputFormProps {
 
 export function InputForm({ onGlintFound }: InputFormProps) {
   const [input, setInput] = useState('');
-  const [mode, setMode] = useState<'creative' | 'standard'>('creative');
+  const [mode, setMode] = useState<'creative' | 'standard' | 'opposite'>(
+    'creative',
+  );
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const findGlint = async (
     word: string,
-    selectedMode: 'creative' | 'standard',
+    selectedMode: 'creative' | 'standard' | 'opposite',
   ) => {
     try {
       const response = await safeFetch('/api/ask-ai', {
@@ -31,7 +35,7 @@ export function InputForm({ onGlintFound }: InputFormProps) {
         body: JSON.stringify({ prompt: word, mode: selectedMode }),
       });
       const data = await response.json();
-      return data;
+      return { ...data, mode: selectedMode };
     } catch (error) {
       console.error('Error finding glint:', error);
       return 'Error finding glint';
@@ -40,6 +44,12 @@ export function InputForm({ onGlintFound }: InputFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (input.trim() === '') {
+      setError(true);
+      return;
+    }
+
     if (input.trim()) {
       setLoading(true);
       try {
@@ -53,40 +63,57 @@ export function InputForm({ onGlintFound }: InputFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='space-y-4'>
-      <div className='mx-auto flex max-w-md items-center gap-2 pb-6'>
-        <h1 className='text-2xl text-white'>Find a</h1>
+    <form
+      onSubmit={handleSubmit}
+      className='animate-fadeIn mx-auto max-w-xl space-y-4'
+    >
+      <div className='flex items-center gap-2 pb-6'>
+        <h1 className='text-platinum text-2xl'>Find a</h1>
         <Select
           value={mode}
-          onValueChange={(value: 'creative' | 'standard') => setMode(value)}
+          onValueChange={(value: 'creative' | 'standard' | 'opposite') =>
+            setMode(value)
+          }
         >
-          <SelectTrigger className='w-min border-gray-700 bg-transparent text-2xl text-white'>
+          <SelectTrigger className='text-platinum w-min border-gray-700 bg-transparent text-2xl'>
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className='border-gray-800 bg-gray-800 text-white'>
+          <SelectContent className='text-platinum border-gray-800 bg-gray-800'>
             <SelectItem value='standard'>different</SelectItem>
             <SelectItem value='creative'>creative</SelectItem>
+            <SelectItem value='opposite'>opposite</SelectItem>
           </SelectContent>
         </Select>
-        <h1 className='text-2xl text-white'>way to say</h1>
+        <h1 className='text-platinum text-2xl'>way to say</h1>
       </div>
-      <div className='relative'>
+      <div className='mx-auto flex gap-x-2'>
         <input
           type='text'
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder='Enter the word or phrase'
-          className='focus:ring-engineeringOrange w-full max-w-md rounded-lg border border-gray-700 bg-gray-800/50 p-4 text-white placeholder-gray-400 transition-all focus:outline-none focus:ring-2'
+          placeholder='Enter a word or phrase'
+          onClick={() => setError(false)}
+          className='focus:ring-butterscotch text-platinum w-full max-w-md rounded-lg border border-gray-700 bg-gray-800/50 p-4 placeholder-gray-400 transition-all focus:outline-none focus:ring-2'
           disabled={loading}
         />
+
+        <button
+          type='submit'
+          className='bg-butterscotch/90 hover:bg-butterscotch/80 text-platinum rounded-lg p-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50'
+          disabled={loading}
+        >
+          {loading ? <Disc3Icon className='animate-spin' /> : <SearchIcon />}
+        </button>
       </div>
-      <button
-        type='submit'
-        className='bg-engineeringOrange hover:bg-engineeringOrange/70 w-full max-w-md rounded-lg p-4 font-medium text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50'
-        disabled={loading}
-      >
-        {loading ? 'Finding Glint...' : 'Find Glint'}
-      </button>
+      <div className='relative h-6'>
+        <p
+          className={`ml-2 text-left text-red-600 transition-all duration-300 ${
+            error ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+          }`}
+        >
+          Add something, duh
+        </p>
+      </div>
     </form>
   );
 }

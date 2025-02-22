@@ -2,15 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { creativePrompt } from '@/prompts/creative';
 import { standardPrompt } from '@/prompts/standard';
+import { oppositePrompt } from '@/prompts/opposite';
 
-// Initialize OpenAI client with API key from environment variables
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { prompt, mode = 'creative' } = await req.json();
+    const { prompt, mode = 'standard' } = await req.json();
 
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json(
@@ -19,11 +19,18 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const systemPrompt =
-      mode === 'standard' ? standardPrompt(prompt) : creativePrompt(prompt);
+    const promptMap = {
+      standard: standardPrompt,
+      creative: creativePrompt,
+      opposite: oppositePrompt,
+    } as const;
+
+    const systemPrompt = (
+      promptMap[mode as keyof typeof promptMap] || promptMap.standard
+    )(prompt);
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-4o-2024-08-06',
+      model: 'gpt-4o-mini',
       temperature: 0.9,
       messages: [
         {
@@ -65,6 +72,8 @@ export const POST = async (req: NextRequest) => {
     }
 
     const parsedContent = JSON.parse(content);
+
+    console.log(parsedContent);
 
     return NextResponse.json(parsedContent, { status: 200 });
   } catch (error) {

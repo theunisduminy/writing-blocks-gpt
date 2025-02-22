@@ -11,8 +11,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        prussianBlue: '#1C3144',
+        prussianBlue: '#182A3A',
         engineeringOrange: '#C03221',
+        butterscotch: '#EEA243',
+        platinum: '#F4F6F4',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

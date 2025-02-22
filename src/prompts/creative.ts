@@ -6,7 +6,7 @@ export const creativePrompt = (
 
 Return a JSON object with the following structure:
 {
-  "word": ["<input_word_or_phrase>"],
+  "word": "<input_word_or_phrase>",
   "glint": ["<glint1>", "<glint2>", "<glint3>"],
   "sentence": ["<sentence1_using_glint1>", "<sentence2_using_glint2>", "<sentence3_using_glint3>"]
 }
@@ -16,7 +16,7 @@ Each array (glint and sentence) must contain exactly three items—no more, no l
 Examples:
 For the word "bright":
 {
-  "word": ["bright"],
+  "word": "bright",
   "glint": ["radiant", "luminous", "gleaming"],
   "sentence": [
     "Her radiant smile warmed the room.",
@@ -27,7 +27,7 @@ For the word "bright":
 
 For the word "night":
 {
-  "word": ["night"],
+  "word": "night",
   "glint": ["twilight's veil", "midnight's hush", "evening's glow"],
   "sentence": [
     "Twilight's veil softened the horizon.",
