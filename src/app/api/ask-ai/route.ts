@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import { creativePrompt } from '@/prompts/creative';
 import { standardPrompt } from '@/prompts/standard';
 import { oppositePrompt } from '@/prompts/opposite';
+import { rateLimiter } from '@/app/lib/rate-limiter';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,6 +11,28 @@ const openai = new OpenAI({
 
 export const POST = async (req: NextRequest) => {
   try {
+    // Get IP address from X-Forwarded-For header or fallback to default
+    const ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown-ip';
+
+    // Check rate limit
+    if (rateLimiter.isRateLimited(ip)) {
+      const resetTime = rateLimiter.getResetTime(ip);
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          resetInMs: resetTime,
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Reset': resetTime.toString(),
+            'X-RateLimit-Remaining': '0',
+          },
+        },
+      );
+    }
+
     const { prompt, mode = 'standard' } = await req.json();
 
     if (!prompt || typeof prompt !== 'string') {
@@ -72,10 +95,17 @@ export const POST = async (req: NextRequest) => {
     }
 
     const parsedContent = JSON.parse(content);
+    const remainingRequests = rateLimiter.getRemainingRequests(ip);
 
-    console.log(parsedContent);
+    console.log(remainingRequests);
 
-    return NextResponse.json(parsedContent, { status: 200 });
+    return NextResponse.json(parsedContent, {
+      status: 200,
+      headers: {
+        'X-RateLimit-Remaining': remainingRequests.toString(),
+        'X-RateLimit-Reset': rateLimiter.getResetTime(ip).toString(),
+      },
+    });
   } catch (error) {
     console.error('Error in Glint Finder API:', error);
     return NextResponse.json(

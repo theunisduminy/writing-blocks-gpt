@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { safeFetch } from '../app/lib/safeFetch';
+import { safeFetch } from '../app/lib/safe-fetch';
 import { Glint } from './types';
 import {
   Select,
@@ -17,7 +17,7 @@ interface InputFormProps {
 export function InputForm({ onGlintFound }: InputFormProps) {
   const [input, setInput] = useState('');
   const [mode, setMode] = useState<'creative' | 'standard' | 'opposite'>(
-    'creative',
+    'standard',
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -107,7 +107,7 @@ export function InputForm({ onGlintFound }: InputFormProps) {
       </div>
       <div className='relative h-6'>
         <p
-          className={`ml-2 text-left text-red-600 transition-all duration-300 ${
+          className={`ml-2 text-left text-red-600/90 transition-all duration-300 ${
             error ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
           }`}
         >

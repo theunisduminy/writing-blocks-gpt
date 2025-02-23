@@ -5,9 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Glint Finder - Find Beautiful Word Alternatives',
-  description:
-    'Discover elegant alternatives to everyday words with Glint Finder.',
+  title: 'Writer Blocks',
+  description: 'Elegant alternatives to everyday words.',
 };
 
 export default function RootLayout({
@@ -17,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <footer className='fixed bottom-0 left-0 right-0 p-4 text-center text-sm text-gray-600'>
+          Built by the Vertiqal team
+        </footer>
+      </body>
     </html>
   );
 }
