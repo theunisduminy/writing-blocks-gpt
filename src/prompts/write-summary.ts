@@ -9,15 +9,15 @@ Take a deep breath and think step by step about how to best accomplish this goal
 
 - Combine all of your understanding of the content into a single, 20-word sentence in a section called ONE SENTENCE SUMMARY:.
 
-- Output the 3 most important points of the content as a list with no more than 12 words per point into a section called MAIN POINTS:.
+- Output the 5 most important points of the content as a list with no more than 15 words per point into a section called MAIN POINTS:.
 
-- Output a list of the 3 best takeaways from the content in 12 words or less each in a section called TAKEAWAYS:.
+- Output a list of the 3 best takeaways from the content in 15 words or less each in a section called TAKEAWAYS:.
 
 # OUTPUT INSTRUCTIONS
 
 - Output bullets not numbers.
 - You only output human readable Markdown.
-- Keep each bullet to 12 words or less.
+- Keep each bullet to 15 words or less.
 - Do not output warnings or notes—just the requested sections.
 - Do not repeat items in the output sections.
 - Do not start items with the same opening words.
@@ -29,7 +29,9 @@ You must respond ONLY with a valid JSON object in this exact format:
   "mainPoints": [
     "First main point with clear formatting and proper structure",
     "Second main point continuing the ideas in a coherent way",
-    "Third main point concluding the main thoughts effectively"
+    "Third main point concluding the main thoughts effectively",
+    "Fourth main point concluding the main thoughts effectively",
+    "Fifth main point concluding the main thoughts effectively"
   ],
   "takeaways": [
     "First key takeaway that readers should remember and apply",

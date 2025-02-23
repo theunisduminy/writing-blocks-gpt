@@ -6,6 +6,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { useEffect, useRef, useState } from 'react';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface BaseCarouselDisplayProps<T> {
   items: T[];
@@ -39,21 +40,23 @@ export function BaseCarouselDisplay<T>({
 
   return (
     <Carousel className={`mx-auto w-full max-w-3xl ${className}`}>
-      <CarouselContent>
-        {items.map((item, index) => (
-          <CarouselItem key={index}>
-            <div
-              ref={(el) => {
-                itemsRef.current[index] = el;
-              }}
-              style={{ minHeight: maxHeight > 0 ? `${maxHeight}px` : 'auto' }}
-              className='rounded-lg bg-gray-800/50 px-6 py-12'
-            >
-              {renderItem(item, index)}
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
+      <ScrollArea className='h-80'>
+        <CarouselContent>
+          {items.map((item, index) => (
+            <CarouselItem key={index}>
+              <div
+                ref={(el) => {
+                  itemsRef.current[index] = el;
+                }}
+                style={{ minHeight: maxHeight > 0 ? `${maxHeight}px` : 'auto' }}
+                className='rounded-lg bg-gray-800/50 px-6 py-12'
+              >
+                {renderItem(item, index)}
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </ScrollArea>
       <CarouselPrevious className='border-gray-700 bg-gray-800/50 text-platinum' />
       <CarouselNext className='border-gray-700 bg-gray-800/50 text-platinum' />
     </Carousel>
