@@ -41,7 +41,7 @@ export function GrammarChecker() {
       }
 
       const data = await response.json();
-      setResults([data]); // API returns a single correction
+      setResults([data]);
       setShowResults(true);
     } catch (error) {
       console.error('Error checking grammar:', error);
@@ -62,12 +62,12 @@ export function GrammarChecker() {
   const renderCarouselItem = (item: CarouselItem) => (
     <div className='space-y-4'>
       <div className='flex items-center justify-between'>
-        <h2 className='from-engineeringOrange to-butterscotch bg-gradient-to-r bg-clip-text font-semibold text-transparent md:text-3xl/relaxed'>
+        <h2 className='bg-gradient-to-r from-engineeringOrange to-butterscotch bg-clip-text font-semibold text-transparent md:text-3xl/relaxed'>
           {item.type === 'correction' ? 'Corrected Text' : 'Explanation'}
         </h2>
         {item.type === 'correction' && <CopyButton text={item.content} />}
       </div>
-      <div className={`text-platinum whitespace-pre-wrap text-base`}>
+      <div className={`whitespace-pre-wrap text-base text-platinum`}>
         {item.content}
       </div>
     </div>
@@ -78,13 +78,13 @@ export function GrammarChecker() {
       {!showResults ? (
         <>
           <div className='mx-auto max-w-3xl gap-2'>
-            <h1 className='text-platinum text-2xl'>
+            <h1 className='text-2xl text-platinum'>
               Improve writing and grammar
             </h1>
           </div>
           <BaseInput
             onSubmit={handleGrammarCheck}
-            placeholder='Enter text to improve grammar and writing...'
+            placeholder='Enter sentence or paragraph...'
             inputComponent='textarea'
           />
           {error && (
@@ -106,7 +106,7 @@ export function GrammarChecker() {
               setShowResults(false);
               setError(null);
             }}
-            className='text-platinum mx-auto flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 transition-colors hover:bg-gray-700'
+            className='mx-auto flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 text-platinum transition-colors hover:bg-gray-700'
           >
             <MessageCirclePlusIcon className='h-4 w-4' />
             Check another text

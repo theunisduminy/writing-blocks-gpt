@@ -48,14 +48,14 @@ export function BaseInput({
           onChange={(e) => setValue(e.target.value)}
           placeholder={placeholder}
           onClick={() => setError(false)}
-          className={`focus:ring-butterscotch text-platinum w-full max-w-md rounded-lg border border-gray-700 bg-gray-800/50 p-4 placeholder-gray-400 transition-all focus:outline-none focus:ring-2 ${inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-md'}`}
+          className={`w-full rounded-lg border border-gray-700 bg-gray-800/50 p-4 text-platinum placeholder-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-butterscotch ${inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-md'}`}
           disabled={loading}
-          rows={inputComponent === 'textarea' ? 4 : undefined}
+          rows={inputComponent === 'textarea' ? 6 : undefined}
         />
 
         <button
           type='submit'
-          className='bg-butterscotch/90 hover:bg-butterscotch/80 text-platinum h-fit rounded-lg p-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50'
+          className='h-fit rounded-lg bg-butterscotch/90 p-4 font-medium text-platinum transition-colors hover:bg-butterscotch/80 disabled:cursor-not-allowed disabled:opacity-50'
           disabled={loading}
         >
           {loading ? <Disc3Icon className='animate-spin' /> : <SearchIcon />}
