@@ -85,7 +85,7 @@ export function SynonymFinder() {
         </>
       ) : (
         <div className='mx-auto max-w-3xl space-y-6'>
-          <p className='mb-6 text-left text-2xl text-gray-300 md:pl-14'>
+          <p className='mb-6 text-left text-2xl text-gray-300'>
             A {results.mode} way to say{' '}
             <span className='font-bold text-engineeringOrange underline'>
               {results.word}
@@ -98,7 +98,7 @@ export function SynonymFinder() {
           />
           <button
             onClick={() => setResults(null)}
-            className='mt-4 flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 text-platinum transition-colors hover:bg-gray-700 md:ml-14'
+            className='mt-4 flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 text-platinum transition-colors hover:bg-gray-700'
           >
             <MessageCirclePlusIcon className='h-4 w-4' />
             Try another word

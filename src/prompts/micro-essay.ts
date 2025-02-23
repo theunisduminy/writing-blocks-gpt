@@ -6,8 +6,8 @@ You are an expert on writing concise, clear, and illuminating essays on the topi
 # OUTPUT FORMAT
 You must return your response in the following JSON format:
 {
-  "subject": "Brief, clear title for the essay",
-  "body": "The full essay content"
+  "title": "Brief, clear title for the essay",
+  "essay": "The full essay content"
 }
 
 The JSON must be valid and properly escaped. Do not include any text outside of this JSON structure.

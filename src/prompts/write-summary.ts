@@ -7,7 +7,7 @@ Take a deep breath and think step by step about how to best accomplish this goal
 
 # OUTPUT SECTIONS
 
-- Combine all of your understanding of the content into a single, 20-word sentence in a section called ONE SENTENCE SUMMARY:.
+- Combine all of your understanding of the content into a single, 25-word sentence in a section called ONE SENTENCE SUMMARY:.
 
 - Output the 5 most important points of the content as a list with no more than 15 words per point into a section called MAIN POINTS:.
 

@@ -23,6 +23,7 @@ interface EmailResult {
 
 interface EssayResult {
   essay: string;
+  title: string;
 }
 
 interface SummaryResult {
@@ -131,6 +132,7 @@ export function WriteAssistant() {
             type='essay'
             content={{
               essay: essayContent.essay,
+              title: essayContent.title,
             }}
           />
         );
@@ -143,7 +145,7 @@ export function WriteAssistant() {
       {!results ? (
         <>
           <div className='mx-auto flex max-w-3xl items-center gap-2'>
-            <h1 className='text-2xl text-platinum'>Help me write a</h1>
+            <h1 className='text-2xl text-platinum'>Help me write a </h1>
             <Select
               value={mode}
               onValueChange={(value: WritingMode) => setMode(value)}
@@ -152,12 +154,12 @@ export function WriteAssistant() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className='border-gray-800 bg-gray-800 text-platinum'>
-                <SelectItem value='essay'>micro essay</SelectItem>
+                <SelectItem value='essay'>mini essay</SelectItem>
                 <SelectItem value='email'>email</SelectItem>
                 <SelectItem value='summary'>summary</SelectItem>
               </SelectContent>
             </Select>
-            <h1 className='text-2xl text-platinum'>based on my notes</h1>
+            {/* <h1 className='text-2xl text-platinum'>based on my notes</h1> */}
           </div>
           <BaseInput
             onSubmit={handleWriteContent}

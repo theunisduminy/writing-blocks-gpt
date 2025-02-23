@@ -35,5 +35,9 @@ export async function handleWriting(notes: string, mode: string = 'essay') {
     throw new Error('No response content from OpenAI');
   }
 
-  return JSON.parse(content.trim());
+  console.log('OpenAI Response:', content);
+  const parsedContent = JSON.parse(content.trim());
+  console.log('Parsed Content:', parsedContent);
+
+  return parsedContent;
 }

@@ -39,8 +39,8 @@ export function BaseCarouselDisplay<T>({
   }, [items]);
 
   return (
-    <Carousel className={`mx-auto w-full max-w-3xl ${className}`}>
-      <ScrollArea className='h-80'>
+    <Carousel className={`mx-auto max-w-3xl ${className}`}>
+      <ScrollArea>
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
