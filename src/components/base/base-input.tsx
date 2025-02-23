@@ -40,7 +40,7 @@ export function BaseInput({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`mx-auto max-w-xl space-y-4 ${className}`}
+      className={`mx-auto space-y-4 ${className} ${inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-xl'}`}
     >
       <div className='flex items-center gap-x-2'>
         <InputComponent
@@ -48,7 +48,7 @@ export function BaseInput({
           onChange={(e) => setValue(e.target.value)}
           placeholder={placeholder}
           onClick={() => setError(false)}
-          className='focus:ring-butterscotch text-platinum w-full max-w-md rounded-lg border border-gray-700 bg-gray-800/50 p-4 placeholder-gray-400 transition-all focus:outline-none focus:ring-2'
+          className={`focus:ring-butterscotch text-platinum w-full max-w-md rounded-lg border border-gray-700 bg-gray-800/50 p-4 placeholder-gray-400 transition-all focus:outline-none focus:ring-2 ${inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-md'}`}
           disabled={loading}
           rows={inputComponent === 'textarea' ? 4 : undefined}
         />

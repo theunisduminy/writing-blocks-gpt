@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
-import { creativePrompt } from '@/prompts/creative';
-import { standardPrompt } from '@/prompts/standard';
-import { oppositePrompt } from '@/prompts/opposite';
 import { rateLimiter } from '@/app/lib/rate-limiter';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import { handleFindWord } from '../handlers/find-word';
+import { handleGrammarCheck } from '../handlers/check-grammar';
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -33,73 +27,27 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const { prompt, mode = 'standard' } = await req.json();
+    const body = await req.json();
+    const { type = 'find-word' } = body;
 
-    if (!prompt || typeof prompt !== 'string') {
+    let result;
+
+    if (type === 'find-word') {
+      const { prompt, mode = 'different' } = body;
+      result = await handleFindWord(prompt, mode);
+    } else if (type === 'check-grammar') {
+      const { text } = body;
+      result = await handleGrammarCheck(text);
+    } else {
       return NextResponse.json(
-        { error: 'Invalid prompt provided' },
+        { error: 'Invalid request type' },
         { status: 400 },
       );
     }
 
-    const promptMap = {
-      standard: standardPrompt,
-      creative: creativePrompt,
-      opposite: oppositePrompt,
-    } as const;
-
-    const systemPrompt = (
-      promptMap[mode as keyof typeof promptMap] || promptMap.standard
-    )(prompt);
-
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      temperature: 0.9,
-      messages: [
-        {
-          role: 'system',
-          content: systemPrompt,
-        },
-      ],
-      response_format: {
-        type: 'json_schema',
-        json_schema: {
-          name: 'glint_response',
-          strict: true,
-          schema: {
-            type: 'object',
-            properties: {
-              word: {
-                type: 'array',
-                items: { type: 'string' },
-              },
-              glint: {
-                type: 'array',
-                items: { type: 'string' },
-              },
-              sentence: {
-                type: 'array',
-                items: { type: 'string' },
-              },
-            },
-            required: ['word', 'glint', 'sentence'],
-            additionalProperties: false,
-          },
-        },
-      },
-    });
-
-    const content = response.choices[0]?.message.content;
-    if (!content) {
-      throw new Error('No response content from OpenAI');
-    }
-
-    const parsedContent = JSON.parse(content);
     const remainingRequests = rateLimiter.getRemainingRequests(ip);
 
-    console.log(remainingRequests);
-
-    return NextResponse.json(parsedContent, {
+    return NextResponse.json(result, {
       status: 200,
       headers: {
         'X-RateLimit-Remaining': remainingRequests.toString(),
@@ -109,7 +57,7 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     console.error('Error in API:', error);
     return NextResponse.json(
-      { error: 'Failed to generate words' },
+      { error: 'Failed to process request' },
       { status: 500 },
     );
   }

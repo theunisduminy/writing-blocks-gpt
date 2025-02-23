@@ -1,4 +1,4 @@
-export const standardPrompt = (inputWord: string) => `
+export const differentPrompt = (inputWord: string) => `
 You are an AI tasked with generating a response based on a input word or phrase. For the given word/phrase, provide:
 - The input word.
 - Three corresponding 'glints'—each a single-word synonym capturing a distinct shade of the input word's meaning.

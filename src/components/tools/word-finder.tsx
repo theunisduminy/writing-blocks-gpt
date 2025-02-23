@@ -18,13 +18,13 @@ interface Glint {
   word: string;
   glint: string[];
   sentence: string[];
-  mode: 'creative' | 'standard' | 'opposite';
+  mode: 'creative' | 'different' | 'opposite';
 }
 
 export function SynonymFinder() {
   const [results, setResults] = useState<Glint | null>(null);
-  const [mode, setMode] = useState<'creative' | 'standard' | 'opposite'>(
-    'standard',
+  const [mode, setMode] = useState<'creative' | 'different' | 'opposite'>(
+    'different',
   );
 
   const handleFindSynonym = async (word: string) => {
@@ -63,7 +63,7 @@ export function SynonymFinder() {
             <h1 className='text-platinum text-2xl'>Find a</h1>
             <Select
               value={mode}
-              onValueChange={(value: 'creative' | 'standard' | 'opposite') =>
+              onValueChange={(value: 'creative' | 'different' | 'opposite') =>
                 setMode(value)
               }
             >
@@ -71,7 +71,7 @@ export function SynonymFinder() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className='text-platinum border-gray-800 bg-gray-800'>
-                <SelectItem value='standard'>different</SelectItem>
+                <SelectItem value='different'>different</SelectItem>
                 <SelectItem value='creative'>creative</SelectItem>
                 <SelectItem value='opposite'>opposite</SelectItem>
               </SelectContent>
@@ -80,14 +80,13 @@ export function SynonymFinder() {
           </div>
           <BaseInput
             onSubmit={handleFindSynonym}
-            placeholder='Enter a word or phrase'
+            placeholder='Enter a word or phrase...'
           />
         </>
       ) : (
         <div className='mx-auto max-w-3xl space-y-6'>
-          <p className='mb-6 text-2xl text-gray-300 md:pl-14'>
-            A {results.mode === 'creative' ? 'creative' : 'different'} way to
-            say{' '}
+          <p className='mb-6 text-left text-2xl text-gray-300 md:pl-14'>
+            A {results.mode} way to say{' '}
             <span className='text-engineeringOrange font-bold underline'>
               {results.word}
             </span>{' '}

@@ -19,7 +19,7 @@ export const CopyButton = ({ text }: Props) => {
     <button
       onClick={handleCopy}
       className='hover:text-platinum flex items-center justify-center p-2 text-gray-300 transition-colors'
-      title={isCopied ? 'Copied!' : 'Copy word'}
+      title={isCopied ? 'Copied!' : 'Copy'}
     >
       {isCopied ? (
         <>
