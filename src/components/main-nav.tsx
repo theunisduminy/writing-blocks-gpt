@@ -10,7 +10,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { cn } from '@/lib/utils';
+import { cn } from '@/app/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 

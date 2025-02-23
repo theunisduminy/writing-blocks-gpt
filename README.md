@@ -1,4 +1,4 @@
-# Writing Blocks GPT 📝✨
+# Writing Blocks GPT
 
 Welcome to Writing Blocks GPT! This is a modern web application built with Next.js that helps you enhance your writing using AI-powered tools.
 
