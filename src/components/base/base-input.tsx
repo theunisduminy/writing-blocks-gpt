@@ -42,20 +42,30 @@ export function BaseInput({
       onSubmit={handleSubmit}
       className={`mx-auto space-y-4 ${className} ${inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-xl'}`}
     >
-      <div className='flex items-center gap-x-2'>
+      <div
+        className={`${inputComponent === 'textarea' ? 'relative' : 'flex items-center gap-x-2'}`}
+      >
         <InputComponent
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder={placeholder}
           onClick={() => setError(false)}
-          className={`w-full rounded-lg border border-gray-700 bg-gray-800/50 p-4 text-platinum placeholder-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-butterscotch ${inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-md'}`}
+          className={`w-full rounded-lg border border-gray-700 bg-gray-800/50 p-4 ${
+            inputComponent === 'textarea' ? 'pr-16' : ''
+          } text-platinum placeholder-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-butterscotch ${
+            inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-lg'
+          }`}
           disabled={loading}
           rows={inputComponent === 'textarea' ? 6 : undefined}
         />
 
         <button
           type='submit'
-          className='h-fit rounded-full bg-butterscotch/90 p-4 font-medium text-platinum transition-colors hover:bg-butterscotch/80 disabled:cursor-not-allowed disabled:opacity-50'
+          className={`${
+            inputComponent === 'textarea'
+              ? 'absolute bottom-5 right-3'
+              : 'h-fit'
+          } rounded-lg bg-butterscotch/90 p-3 font-medium text-platinum transition-colors hover:bg-butterscotch/80 disabled:cursor-not-allowed disabled:opacity-50`}
           disabled={loading}
         >
           {loading ? <Disc3Icon className='animate-spin' /> : <SendIcon />}
