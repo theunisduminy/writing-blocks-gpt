@@ -107,9 +107,9 @@ export const POST = async (req: NextRequest) => {
       },
     });
   } catch (error) {
-    console.error('Error in Glint Finder API:', error);
+    console.error('Error in API:', error);
     return NextResponse.json(
-      { error: 'Failed to generate glints' },
+      { error: 'Failed to generate words' },
       { status: 500 },
     );
   }
