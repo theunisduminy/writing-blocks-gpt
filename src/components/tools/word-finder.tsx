@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { safeFetch } from '@/app/lib/safe-fetch';
+import { safeFetch } from '@/lib/safe-fetch';
 
 interface Glint {
   word: string;
@@ -46,7 +46,7 @@ export function SynonymFinder() {
   const renderGlintResult = (glintWord: string, index: number) => (
     <div className='text-left'>
       <div className='flex justify-between'>
-        <h2 className='from-engineeringOrange to-butterscotch mb-4 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl/relaxed'>
+        <h2 className='mb-4 bg-gradient-to-r from-engineeringOrange to-butterscotch bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl/relaxed'>
           {glintWord}
         </h2>
         <CopyButton text={glintWord} />
@@ -60,23 +60,23 @@ export function SynonymFinder() {
       {!results ? (
         <>
           <div className='mx-auto flex max-w-xl items-center gap-2'>
-            <h1 className='text-platinum text-2xl'>Find a</h1>
+            <h1 className='text-2xl text-platinum'>Find a</h1>
             <Select
               value={mode}
               onValueChange={(value: 'creative' | 'different' | 'opposite') =>
                 setMode(value)
               }
             >
-              <SelectTrigger className='text-platinum w-min border-gray-700 bg-transparent text-2xl'>
+              <SelectTrigger className='w-min border-gray-700 bg-transparent text-2xl text-platinum'>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className='text-platinum border-gray-800 bg-gray-800'>
+              <SelectContent className='border-gray-800 bg-gray-800 text-platinum'>
                 <SelectItem value='different'>different</SelectItem>
                 <SelectItem value='creative'>creative</SelectItem>
                 <SelectItem value='opposite'>opposite</SelectItem>
               </SelectContent>
             </Select>
-            <h1 className='text-platinum text-2xl'>way to say</h1>
+            <h1 className='text-2xl text-platinum'>way to say</h1>
           </div>
           <BaseInput
             onSubmit={handleFindSynonym}
@@ -87,7 +87,7 @@ export function SynonymFinder() {
         <div className='mx-auto max-w-3xl space-y-6'>
           <p className='mb-6 text-left text-2xl text-gray-300 md:pl-14'>
             A {results.mode} way to say{' '}
-            <span className='text-engineeringOrange font-bold underline'>
+            <span className='font-bold text-engineeringOrange underline'>
               {results.word}
             </span>{' '}
             is
@@ -98,7 +98,7 @@ export function SynonymFinder() {
           />
           <button
             onClick={() => setResults(null)}
-            className='text-platinum mt-4 flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 transition-colors hover:bg-gray-700 md:ml-14'
+            className='mt-4 flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 text-platinum transition-colors hover:bg-gray-700 md:ml-14'
           >
             <MessageCirclePlusIcon className='h-4 w-4' />
             Try another word

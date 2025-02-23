@@ -38,7 +38,7 @@ export function BaseCarouselDisplay<T>({
   }, [items]);
 
   return (
-    <Carousel className={`mx-auto w-full max-w-2xl ${className}`}>
+    <Carousel className={`mx-auto w-full max-w-3xl ${className}`}>
       <CarouselContent>
         {items.map((item, index) => (
           <CarouselItem key={index}>
@@ -54,8 +54,8 @@ export function BaseCarouselDisplay<T>({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className='text-platinum border-gray-700 bg-gray-800/50' />
-      <CarouselNext className='text-platinum border-gray-700 bg-gray-800/50' />
+      <CarouselPrevious className='border-gray-700 bg-gray-800/50 text-platinum' />
+      <CarouselNext className='border-gray-700 bg-gray-800/50 text-platinum' />
     </Carousel>
   );
 }

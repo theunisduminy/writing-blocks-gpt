@@ -6,6 +6,7 @@ interface BaseInputProps {
   placeholder?: string;
   inputComponent?: 'input' | 'textarea';
   className?: string;
+  disabled?: boolean;
 }
 
 export function BaseInput({
@@ -13,6 +14,7 @@ export function BaseInput({
   placeholder = 'Enter text',
   inputComponent = 'input',
   className = '',
+  disabled = false,
 }: BaseInputProps) {
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,8 +56,8 @@ export function BaseInput({
             inputComponent === 'textarea' ? 'pr-16' : ''
           } text-platinum placeholder-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-butterscotch ${
             inputComponent === 'textarea' ? 'max-w-3xl' : 'max-w-lg'
-          }`}
-          disabled={loading}
+          } ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
+          disabled={disabled || loading}
           rows={inputComponent === 'textarea' ? 6 : undefined}
         />
 
@@ -66,7 +68,7 @@ export function BaseInput({
               ? 'absolute bottom-5 right-3'
               : 'h-fit'
           } rounded-lg bg-butterscotch/90 p-3 font-medium text-platinum transition-colors hover:bg-butterscotch/80 disabled:cursor-not-allowed disabled:opacity-50`}
-          disabled={loading}
+          disabled={disabled || loading}
         >
           {loading ? <Disc3Icon className='animate-spin' /> : <SendIcon />}
         </button>

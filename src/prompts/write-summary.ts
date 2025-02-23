@@ -22,6 +22,24 @@ Take a deep breath and think step by step about how to best accomplish this goal
 - Do not repeat items in the output sections.
 - Do not start items with the same opening words.
 
-# INPUT:
+# RESPONSE FORMAT
+You must respond ONLY with a valid JSON object in this exact format:
+{
+  "oneSentence": "The one sentence summary that captures the main idea.",
+  "mainPoints": [
+    "First main point with clear formatting and proper structure",
+    "Second main point continuing the ideas in a coherent way",
+    "Third main point concluding the main thoughts effectively"
+  ],
+  "takeaways": [
+    "First key takeaway that readers should remember and apply",
+    "Second key takeaway building on the insights shared above",
+    "Third key takeaway with final important point to consider"
+  ]
+}
 
+Note: Each array item should be properly formatted and punctuated. Keep each point under 12 words.
+Do not include any other text, markdown, or explanations outside of the JSON.
+
+# INPUT:
 ${input}`;
