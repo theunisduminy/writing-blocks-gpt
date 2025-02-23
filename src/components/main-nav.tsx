@@ -50,7 +50,7 @@ export function MainNav() {
               <ListItem href='/check-grammar' title='Check grammar'>
                 Fix grammar and improve writing.
               </ListItem>
-              <ListItem href='/write' title='Write from ideas'>
+              <ListItem href='/write-agent' title='Write from ideas'>
                 Create essays, emails, and more.
               </ListItem>
             </ul>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchIcon, Disc3Icon } from 'lucide-react';
+import { SendIcon, Disc3Icon } from 'lucide-react';
 
 interface BaseInputProps {
   onSubmit: (value: string) => Promise<void>;
@@ -55,10 +55,10 @@ export function BaseInput({
 
         <button
           type='submit'
-          className='h-fit rounded-lg bg-butterscotch/90 p-4 font-medium text-platinum transition-colors hover:bg-butterscotch/80 disabled:cursor-not-allowed disabled:opacity-50'
+          className='h-fit rounded-full bg-butterscotch/90 p-4 font-medium text-platinum transition-colors hover:bg-butterscotch/80 disabled:cursor-not-allowed disabled:opacity-50'
           disabled={loading}
         >
-          {loading ? <Disc3Icon className='animate-spin' /> : <SearchIcon />}
+          {loading ? <Disc3Icon className='animate-spin' /> : <SendIcon />}
         </button>
       </div>
       <div className='relative h-6'>
