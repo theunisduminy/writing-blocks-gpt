@@ -16,19 +16,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' className='h-full overflow-hidden'>
       <body
-        className={`${inter.className} overflow-hidden bg-gradient-to-br from-gray-900 from-60% to-prussianBlue`}
+        className={`${inter.className} flex min-h-screen flex-col bg-gradient-to-br from-gray-900 from-60% to-prussianBlue`}
       >
         <header className='bg-gray-900'>
           <div className='flex h-16 items-center border-none'>
             <MainNav />
           </div>
         </header>
-        <main className='mt-24 flex min-h-screen items-start justify-center p-4'>
+        <main className='mt-24 flex flex-1 items-start justify-center p-4'>
           {children}
         </main>
-        <footer className='fixed bottom-0 left-0 right-0 p-4 text-center text-sm text-gray-500'>
+        <footer className='p-4 text-center text-sm text-gray-500'>
           {new Date().getFullYear()} © Vertiqal, all rights reserved.
         </footer>
       </body>
