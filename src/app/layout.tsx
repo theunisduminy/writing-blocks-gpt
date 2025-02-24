@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className='overflow-x-hidden'>
+    <html lang='en' className='max-h-screen overflow-x-hidden'>
       <body
         className={`${inter.className} flex min-h-screen flex-col bg-gradient-to-br from-gray-900 from-60% to-prussianBlue`}
       >
@@ -25,7 +25,7 @@ export default function RootLayout({
             <MainNav />
           </div>
         </header>
-        <main className='flex flex-1 items-start justify-center p-4'>
+        <main className='flex flex-grow items-start justify-center p-4'>
           {children}
         </main>
         <footer className='bg-transparent p-4 text-center text-sm text-gray-500'>
