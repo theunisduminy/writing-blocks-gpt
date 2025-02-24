@@ -92,6 +92,9 @@ export function SynonymFinder() {
             </span>{' '}
             is
           </p>
+          <div className='flex items-start justify-start md:hidden'>
+            <p className='text-xs text-gray-500'>Swipe for more</p>
+          </div>
           <BaseCarouselDisplay
             items={results.glint}
             renderItem={renderGlintResult}
