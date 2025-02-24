@@ -41,7 +41,7 @@ export function BaseCarouselDisplay<T>({
   return (
     <Carousel className={`mx-auto max-w-3xl ${className}`}>
       <ScrollArea
-        className={`max-w-3xl ${maxHeight > 235 ? `h-[${maxHeight}px]` : 'h-full'}`}
+        className={`max-w-3xl ${maxHeight > 235 ? `h-[${maxHeight}px]` : 'h-fit'}`}
       >
         <CarouselContent>
           {items.map((item, index) => (
@@ -59,8 +59,8 @@ export function BaseCarouselDisplay<T>({
           ))}
         </CarouselContent>
       </ScrollArea>
-      <CarouselPrevious className='border-gray-700 bg-gray-800/50 text-platinum' />
-      <CarouselNext className='border-gray-700 bg-gray-800/50 text-platinum' />
+      <CarouselPrevious className='hidden border-gray-700 bg-gray-800/50 text-platinum md:flex' />
+      <CarouselNext className='hidden border-gray-700 bg-gray-800/50 text-platinum md:flex' />
     </Carousel>
   );
 }

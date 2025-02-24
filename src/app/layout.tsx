@@ -16,16 +16,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className='h-full overflow-x-hidden'>
+    <html lang='en' className='overflow-x-hidden'>
       <body
         className={`${inter.className} flex min-h-screen flex-col bg-gradient-to-br from-gray-900 from-60% to-prussianBlue`}
       >
         <header className='bg-gray-900'>
-          <div className='flex h-16 items-center border-none'>
+          <div className='mb-14 flex h-16 items-center border-none md:mb-24'>
             <MainNav />
           </div>
         </header>
-        <main className='mt-24 flex flex-1 items-start justify-center p-4'>
+        <main className='flex flex-1 items-start justify-center p-4'>
           {children}
         </main>
         <footer className='bg-transparent p-4 text-center text-sm text-gray-500'>
