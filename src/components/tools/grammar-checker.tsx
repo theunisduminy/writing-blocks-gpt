@@ -95,7 +95,7 @@ export function GrammarChecker() {
           )}
         </>
       ) : (
-        <div className='space-y-6'>
+        <div className='mx-auto max-w-3xl space-y-6'>
           <BaseCarouselDisplay
             items={carouselItems}
             renderItem={renderCarouselItem}
@@ -106,7 +106,7 @@ export function GrammarChecker() {
               setShowResults(false);
               setError(null);
             }}
-            className='mx-auto flex items-center gap-2 rounded-lg bg-gray-800 px-6 py-3 text-platinum transition-colors hover:bg-gray-700'
+            className='flex gap-2 rounded-lg bg-gray-800 px-6 py-3 text-platinum transition-colors hover:bg-gray-700'
           >
             <MessageCirclePlusIcon className='h-4 w-4' />
             Check another text

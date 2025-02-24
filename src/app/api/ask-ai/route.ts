@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimiter } from '@/lib/rate-limiter';
-import { handleFindWord } from '../handlers/find-word';
-import { handleGrammarCheck } from '../handlers/check-grammar';
-import { handleWriting } from '../handlers/handle-writing';
+import { createAIHandler } from '../handlers/factory';
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -30,18 +28,19 @@ export const POST = async (req: NextRequest) => {
 
     const body = await req.json();
     const { type = 'find-word' } = body;
+    const aiHandler = createAIHandler();
 
     let result;
 
     if (type === 'find-word') {
       const { prompt, mode = 'different' } = body;
-      result = await handleFindWord(prompt, mode);
+      result = await aiHandler.handleFindWord(prompt, mode);
     } else if (type === 'check-grammar') {
       const { text } = body;
-      result = await handleGrammarCheck(text);
+      result = await aiHandler.handleGrammarCheck(text);
     } else if (type === 'write') {
       const { prompt, mode = 'email' } = body;
-      result = await handleWriting(prompt, mode);
+      result = await aiHandler.handleWriting(prompt, mode);
     } else {
       return NextResponse.json(
         { error: 'Invalid request type' },

@@ -10,13 +10,9 @@ You must return your response in the following JSON format:
   "essay": "The full essay content"
 }
 
-The JSON must be valid and properly escaped. Do not include any text outside of this JSON structure.
+The JSON must be valid and properly escaped. Do not include any text outside of this JSON structure
 
-# OUTPUT INSTRUCTIONS
-
-- Write the essay in the style of Paul Graham, who is known for this concise, clear, and simple style of writing.
-
-EXAMPLE PAUL GRAHAM ESSAYS
+# EXAMPLE PAUL GRAHAM ESSAYS
 
 How to Start Google
 
@@ -98,6 +94,8 @@ END EXAMPLE PAUL GRAHAM ESSAYS
 
 # OUTPUT INSTRUCTIONS
 
+- There has to be a minimum of 250 words, and at least 3 paragraphs.
+
 - Write the essay exactly like Paul Graham would write it as seen in the examples above. 
 
 - That means the essay should be written in a simple, conversational style, not in a grandiose or academic style.
@@ -119,6 +117,8 @@ END EXAMPLE PAUL GRAHAM ESSAYS
 - Do not output warnings or notes—just the output requested.
 
 - The essay should be a maximum of 250 words.
+
+- There must be at least 3 paragraphs.
 
 # INPUT:
 ${input}`;

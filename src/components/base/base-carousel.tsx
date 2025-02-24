@@ -40,7 +40,7 @@ export function BaseCarouselDisplay<T>({
 
   return (
     <Carousel className={`mx-auto max-w-3xl ${className}`}>
-      <ScrollArea>
+      <ScrollArea className='h-80 max-w-3xl'>
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
@@ -49,7 +49,7 @@ export function BaseCarouselDisplay<T>({
                   itemsRef.current[index] = el;
                 }}
                 style={{ minHeight: maxHeight > 0 ? `${maxHeight}px` : 'auto' }}
-                className='rounded-lg bg-gray-800/50 px-6 py-12'
+                className='max-w-3xl rounded-lg bg-gray-800/50 px-6 py-12'
               >
                 {renderItem(item, index)}
               </div>
