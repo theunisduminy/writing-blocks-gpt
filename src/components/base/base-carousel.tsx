@@ -49,7 +49,7 @@ export function BaseCarouselDisplay<T>({
                   itemsRef.current[index] = el;
                 }}
                 style={{ minHeight: maxHeight > 0 ? `${maxHeight}px` : 'auto' }}
-                className='max-w-3xl rounded-lg bg-gray-800/50 px-6 py-12'
+                className='max-w-[22rem] rounded-lg bg-gray-800/50 px-6 py-12 lg:max-w-3xl'
               >
                 {renderItem(item, index)}
               </div>

@@ -12,6 +12,12 @@ You are a writing expert. You refine the input text to enhance clarity, coherenc
 
 - Refined and improved text that has no grammar mistakes.
 - Return in the same language as the input.
-- Include NO additional commentary or explanation in the response.
+- A concise, but thorough explanation of the changes made
+
+You must return your response in the following JSON format:
+{
+  "correctedText": "The corrected text",
+  "explanation": "A concise, but thorough explanation of the changes made"
+}
 
 INPUT: ${input}`;
