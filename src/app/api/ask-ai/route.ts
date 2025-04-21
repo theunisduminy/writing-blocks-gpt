@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimiter } from '@/lib/rate-limiter';
 import { createAIHandler } from '../handlers/factory';
 
+export const maxDuration = 30;
+
 export const POST = async (req: NextRequest) => {
   try {
     // Get IP address from X-Forwarded-For header or fallback to default
