@@ -29,7 +29,7 @@ export class WritingHandler extends GeminiBase {
     const schema = schemaMap[mode as keyof typeof schemaMap] || essaySchema;
 
     const model = this.client.getGenerativeModel({
-      model: 'gemini-2.5-pro-exp-03-25',
+      model: 'gemini-2.5-flash-preview-05-20',
       generationConfig: {
         temperature: 0.7,
         responseMimeType: 'application/json',

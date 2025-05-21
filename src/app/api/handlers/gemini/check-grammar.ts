@@ -11,7 +11,7 @@ export class GrammarHandler extends GeminiBase {
 
     const systemPrompt = grammarPrompt(text);
     const model = this.client.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash-preview-05-20',
       generationConfig: {
         temperature: 0.3,
         responseMimeType: 'application/json',
